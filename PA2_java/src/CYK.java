@@ -37,34 +37,25 @@ public class CYK{
 	void calcCYK(int [] w)
 	{
 		int L = w.length;
-		X=new boolean [L][L][VarNum];
+		X = new boolean [L][L][VarNum];
 		//Fill in your program here
     
-	  for (int i=0; i<L; ++i)
-    {
-      /* System.out.println ("i: " + i + "..."); */
-      for (int j=0; j<VarNum; ++j)
-      {
-        /* System.out.println ("j: " + j + "..."); */
+	  for (int i = 0; i < L; i++) {
+      for (int j = 0; j < VarNum; j++) {
         X[i][i][j] = existProd(j, w[i], -1);
-        /* System.out.println ("Looping " + X[i][i][j] + "..."); */
       }
     }
 
-    for (int diag=1; diag<L; ++diag)
-    {
-      for (int i=0; i<(L-diag); ++i)
-      {
+    for (int diag = 1; diag < L; diag++) {
+      for (int i = 0; i < (L-diag); i++) {
         int j = diag + i;
-        for (int var=0; var<VarNum; ++var)
-        {
-          X[i][j][var]=false;
-          for (int k=i; k<j; ++k)
-          {
-            for (int v2=0; v2<VarNum; ++v2)
-            {
-              for (int v3=0; v3<VarNum; ++v3)
-              {
+
+        for (int var = 0; var < VarNum; var++) {
+          X[i][j][var] = false;
+
+          for (int k = i; k < j; k++) {
+            for (int v2 = 0; v2 < VarNum; v2++) {
+              for (int v3 = 0; v3 < VarNum; v3++) {
                 if (X[i][k][v2] &&  X[k+1][j][v3] && existProd(var,v2,v3)) {
                   X[i][j][var] = true;
                 }
@@ -74,19 +65,6 @@ public class CYK{
         }
       }
     }
-
-
-    /* for diag in range(1, L): */
-    /*   for i in range(L - diag): */
-    /*     j = diag + i */
-    /*  */
-    /*     for k in range(diag): */
-    /*       for producer in range(VarNum): */
-    /*         for var in range(VarNum): */
-    /*           for var2 in range(VarNum): */
-    /*             if X[i][j + k - diag][var] and X[i + k + 1][j][var2]: */
-    /*               X[i][j][producer] = X[i][j][producer] or existProd(producer, var, var2) */
-		
 	}
 	
 	public String Start(String filename)

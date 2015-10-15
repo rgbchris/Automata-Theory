@@ -124,11 +124,11 @@ public class Submit {
   }
 
   private String challenge_url() {
-    return "http://class.coursera.org/automata-003/assignment/challenge";
+    return "http://class.coursera.org/automata-004/assignment/challenge";
   }
 
   private String submit_url() {
-    return "http://class.coursera.org/automata-003/assignment/submit";
+    return "http://class.coursera.org/automata-004/assignment/submit";
   }
 
 
